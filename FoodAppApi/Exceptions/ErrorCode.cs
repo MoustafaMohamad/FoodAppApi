@@ -1,7 +1,9 @@
 ﻿namespace FoodAppApi.Exceptions
 {
-    public class ErrorCode
+    public enum  ErrorCode
     {
+        UnKnown ,
+        None
 
     }
 }

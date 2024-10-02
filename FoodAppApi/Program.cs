@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FoodAppApi.Helpers;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
+using FoodAppApi.Middlewares;
 
 namespace FoodAppApi
 {
@@ -47,6 +48,8 @@ namespace FoodAppApi
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseMiddleware<GlobalErrorHandlerMiddleware>();
+            app.UseMiddleware<TransactionMiddleware>();
 
 
             app.MapControllers();
