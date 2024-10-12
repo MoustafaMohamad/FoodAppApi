@@ -1,7 +1,9 @@
 ﻿namespace FoodAppApi.Exceptions
 {
-    public class ErrorCode
+    public enum ErrorCode
     {
-
+        NoError=0,
+        //user 1:100
+        InvalidUserName=1,
     }
 }

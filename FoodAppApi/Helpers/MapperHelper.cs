@@ -6,7 +6,7 @@ namespace FoodAppApi.Helpers
     public static class MapperHelper
     {
 
-        public static IMapper Mapper { get; set; }
+       public static IMapper Mapper { get; set; }
 
         public static IQueryable<TResult> Map<TResult>(this IQueryable source)
         {
@@ -17,7 +17,6 @@ namespace FoodAppApi.Helpers
         {
             return Mapper.Map<TResult>(source);
         }
-
 
     }
 }

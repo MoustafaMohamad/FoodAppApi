@@ -1,0 +1,27 @@
+﻿using FoodAppApi.DTO;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
+namespace FoodAppApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BaseController : ControllerBase
+    {
+        protected readonly IMediator _mediator;
+        protected readonly UserState _userState;
+        public BaseController(ControllerParameters controllerParameters)
+        {
+            _mediator = controllerParameters.Mediator;
+            _userState = controllerParameters.UserState;
+
+            var loggedUser = new HttpContextAccessor().HttpContext.User;
+
+            _userState.Role = loggedUser?.FindFirst("Role")?.Value ?? "";
+            _userState.ID = loggedUser?.FindFirst("ID")?.Value ?? "";
+            _userState.Name = loggedUser?.FindFirst(ClaimTypes.Name)?.Value ?? "";
+        }
+    }
+}
